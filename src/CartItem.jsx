@@ -20,21 +20,16 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleIncrement = (item) => {
-    dispatch(updateQuantity({ id: item.id, quantity: item.quantity + 1 }));
+    dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
   };
   
   const handleDecrement = (item) => {
-    dispatch(updateQuantity({ id: item.id, quantity: item.quantity - 1 }));
+    dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
   };
   
   const handleRemove = (item) => {
-    dispatch(removeItem(item));
-    setAddedToCart((prevState) => ({
-       ...prevState,
-       [item.name]: true, // Set the product name as key and value as true to indicate it's added to cart
-     }));
+    dispatch(removeItem({name: item.name })); // Passing only the id
   };
-  
 
 
   // Calculate total cost based on quantity for an item
@@ -78,6 +73,7 @@ const CartItem = ({ onContinueShopping }) => {
 };
 
 export default CartItem;
+
 
 
 
